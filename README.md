@@ -1,34 +1,47 @@
 # Spring Boot Integration With PostgreSQL as a Maven Project
 
 
-## Setup a test username, password and database
-* Open the terminal and follow the below commands
-*  To start postgresql@14 now and restart at login: brew services start postgresql@14
-* Or, if you don't want/need a background service you can just run: /usr/local/opt/postgresql@14/bin/postgres -D /usr/local/var/postgresql@14
-* itpltestmacbook@INL-C02YQF9FLVCF ~ %   initdb --locale=C -E UTF-8 /usr/local/var/postgresql@14
-* Postgres Settings: user: app_user, password: app_password, and database: app_database
-* To create the above Postgres setting follow the below commands
-* Get the sql mode by this cmd: psql postgres
-* Create user cmd: CREATE ROLE app_user WITH PASSWORD ‘app_password’;
-* Assign the role cmd: ALTER ROLE app_user CREATEDB;
-* Exit using cmd: \q
-* Login with new user cmd: psql postgres -U app_user
-* Create database cmd: CREATE DATABASE app_database;
-* Connect to the database cmd: \connect app_database;
-* List the table cmd: \dl
+## 1. Environment Preparation:
 
-## Connecting PostgreSQL with PGAdmin
-* Open the application click on the Register - Server
-* Enter the any name under General tab
-* Enter Host name/address as localhost, Port number 5432, Username <valid username> and Password <valid password> and click on save
-* Create the Schemas in this case ‘myschema’
-* Create the Database in this case ‘UserDatabase’
-* Next, create table under the myschema as ‘user’ with details ID as bigint(PK), name as character(50), city as character(50), and password as character(20)
+### Install PostgreSQL:
+* Use a package manager (e.g., brew install postgresql@14 on macOS) or download the installer from the official website.
+* If you don't require a background service, you can run it manually: /usr/local/opt/postgresql@14/bin/postgres -D /usr/local/var/postgresql@14
+### Initialize Database:
+* Run initdb --locale=C -E UTF-8 /usr/local/var/postgresql@14 to initialize the database directory.
 
-## Start the service 
-* Right click and run the java main class 'src/main/java/com/example/springbootWithPostgresql/SpringbootWithPostgresqlApplication.java'
+## 2. User and Database Creation:
 
-## How to install PostgreSQL on a Mac with Homebrew
+### Access SQL Shell:
+* Start the SQL interactive terminal: psql postgres
+### Create User:
+* CREATE ROLE app_user WITH LOGIN PASSWORD 'app_password';
+* ALTER ROLE app_user CREATEDB;
+### Create Database:
+* Log in with the new user: psql postgres -U app_user
+* CREATE DATABASE app_database;
+* Connect to the database: \connect app_database;
+
+## 3. Connecting with PGAdmin:
+
+### Register Server:
+* Open PGAdmin, click "Register Server"
+* Enter a server name, set "Host name/address" to "localhost", port to "5432", and provide the username and password.
+### Create Schema and Table:
+* Create a schema (e.g., "myschema").
+* Create a database (e.g., "UserDatabase")
+* Create a table "user" within the "myschema" schema with columns:
+  - id (bigint, primary key)
+  - name (character(50))
+  - city (character(50))
+  - password (character(20))
+
+## 4. Starting the Service:
+
+### Locate Main Class:
+* Navigate to the src/main/java/com/example/springbootWithPostgresql directory in your project.
+
+### Run Application:
+* Right-click the SpringbootWithPostgresqlApplication.java file and select "Run" to start the Spring Boot application.
 
 ### Step 1: Install Homebrew
 Follow the instructions on their site.
