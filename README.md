@@ -43,6 +43,7 @@
 ### Run Application:
 * Right-click the SpringbootWithPostgresqlApplication.java file and select "Run" to start the Spring Boot application.
 
+# Installation Guide - Postgres
 ### Step 1: Install Homebrew
 Follow the instructions on their site.
 
